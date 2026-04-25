@@ -28,6 +28,15 @@ html[data-theme="light"] header {
   border-color: rgba(17, 24, 39, 0.08);
 }
 
+html[data-theme="light"] main > section,
+html[data-theme="light"] section > div,
+html[data-theme="light"] section article,
+html[data-theme="light"] section figure,
+html[data-theme="light"] footer {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
 html[data-theme="light"] p,
 html[data-theme="light"] li,
 html[data-theme="light"] h1,
@@ -41,12 +50,27 @@ html[data-theme="light"] .glass-card,
 html[data-theme="light"] .feature-card,
 html[data-theme="light"] figure,
 html[data-theme="light"] #pricing article {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #ffffff !important;
   border-color: rgba(17, 24, 39, 0.1);
+}
+
+html[data-theme="light"] #craft .rounded-3xl,
+html[data-theme="light"] #pricing .shadow-glow,
+html[data-theme="light"] .glass-card.rounded-\[2rem\] {
+  background: #ffffff !important;
 }
 
 html[data-theme="light"] #pricing .shadow-glow {
   box-shadow: 0 16px 40px rgba(225, 139, 10, 0.2);
+}
+
+html[data-theme="light"] #pricing a,
+html[data-theme="light"] header a[href="#pricing"] {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] #reserve-build-cta {
+  color: #111827 !important;
 }
 
 html[data-theme="light"] .force-light-text,
@@ -63,6 +87,20 @@ html[data-theme="light"] .force-light-text a {
 
 html[data-theme="light"] .force-light-text {
   border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+html[data-theme="light"] .bg-black,
+html[data-theme="light"] .bg-bark,
+html[data-theme="light"] .hover\:bg-black:hover,
+html[data-theme="light"] .hover\:bg-bark:hover {
+  color: #f9fafb !important;
+}
+
+html[data-theme="light"] .bg-black *,
+html[data-theme="light"] .bg-bark *,
+html[data-theme="light"] .hover\:bg-black:hover *,
+html[data-theme="light"] .hover\:bg-bark:hover * {
+  color: #f9fafb !important;
 }
 
 h1,

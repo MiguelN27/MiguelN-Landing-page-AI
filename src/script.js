@@ -26,15 +26,21 @@ function findSolidBackground(element) {
 
 function updateLightModeContrast() {
   const isDark = document.documentElement.classList.contains("dark");
-  const candidates = document.querySelectorAll("#features, .glass-card, .feature-card, #testimonials figure, #pricing article");
+  const candidates = document.querySelectorAll(
+    "header, footer, main section, main article, main figure, main div, main a, main button"
+  );
 
   candidates.forEach((element) => {
     element.classList.remove("force-light-text");
     if (isDark) return;
 
+    // Skip elements with no readable content.
+    if (!element.textContent || !element.textContent.trim()) return;
+
     const bgChannels = findSolidBackground(element);
+    const alpha = bgChannels[3] ?? 1;
     const luminance = relativeLuminance(bgChannels);
-    if (luminance < 122) {
+    if (alpha > 0.3 && luminance < 122) {
       element.classList.add("force-light-text");
     }
   });
@@ -120,6 +126,9 @@ function initPage() {
   initRevealObserver();
   initSmoothAnchorEnhancements();
   updateLightModeContrast();
+
+  // Re-evaluate contrast on viewport changes.
+  window.addEventListener("resize", updateLightModeContrast);
 }
 
 document.addEventListener("DOMContentLoaded", initPage);
