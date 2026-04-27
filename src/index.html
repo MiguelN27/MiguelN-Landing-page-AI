@@ -69,21 +69,25 @@
         <div class="flex items-center gap-3">
           <button
             id="theme-toggle"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-bark transition hover:scale-105 dark:border-white/15 dark:bg-zinc-800 dark:text-zinc-100"
+            class="ripple-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-bark transition hover:scale-105 dark:border-white/15 dark:bg-zinc-800 dark:text-zinc-100"
             aria-label="Toggle light and dark mode"
           >
             <span id="theme-icon" aria-hidden="true">◐</span>
           </button>
-          <a href="#pricing" class="rounded-full bg-ember px-5 py-2.5 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5">Build Yours</a>
+          <a href="#pricing" aria-label="Go to pricing plans" class="cta-action cta-pulse ripple-btn rounded-full bg-ember px-5 py-2.5 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5">Build Yours</a>
         </div>
       </div>
     </header>
 
     <main id="top">
       <!-- Hero -->
-      <section class="relative overflow-hidden py-20 md:py-28">
+      <section class="hero-section relative overflow-hidden py-20 md:py-28">
+        <div class="hero-gradient" aria-hidden="true"></div>
+        <div class="geo-shape shape-a" data-parallax="0.08" aria-hidden="true"></div>
+        <div class="geo-shape shape-b" data-parallax="0.14" aria-hidden="true"></div>
+        <div class="geo-shape shape-c" data-parallax="0.1" aria-hidden="true"></div>
         <div class="mx-auto grid w-[min(1120px,92%)] items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
-          <div class="space-y-8 reveal">
+          <div class="space-y-8 reveal hero-content">
             <p class="inline-flex items-center gap-2 rounded-full border border-ember/40 bg-ember/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-900 dark:text-amber-300">
               Since 1987 • Brevard, North Carolina
             </p>
@@ -97,22 +101,25 @@
               </p>
             </div>
             <div class="flex flex-wrap gap-4">
-              <a id="reserve-build-cta" href="#pricing" class="rounded-full bg-bark px-7 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:-translate-y-1 hover:bg-black dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">Reserve Your Build</a>
-              <a href="#features" class="rounded-full border border-black/15 bg-white/80 px-7 py-3 text-sm font-bold uppercase tracking-wide transition hover:-translate-y-1 dark:border-white/20 dark:bg-zinc-900">Hear the Difference</a>
+              <a id="reserve-build-cta" href="#pricing" aria-label="Reserve your custom guitar build" class="cta-action cta-pulse ripple-btn rounded-full bg-bark px-7 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:-translate-y-1 hover:bg-black dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">Reserve Your Build</a>
+              <a href="#features" aria-label="Jump to Ashborne features" class="ripple-btn rounded-full border border-black/15 bg-white/80 px-7 py-3 text-sm font-bold uppercase tracking-wide transition hover:-translate-y-1 dark:border-white/20 dark:bg-zinc-900">Hear the Difference</a>
             </div>
             <p class="text-sm text-zinc-600 dark:text-zinc-400">Approximately 900 instruments crafted per year by a 28-person workshop team.</p>
           </div>
 
-          <div class="reveal delay-1">
+          <div class="reveal delay-1 hero-media">
             <article class="glass-card overflow-hidden rounded-[2rem] p-4">
               <img
                 src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1200&q=80"
                 alt="Close-up of handcrafted Ashborne electric guitar with visible wood grain"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
                 class="h-[420px] w-full rounded-[1.4rem] object-cover"
               />
               <div class="mt-4 flex items-center justify-between rounded-2xl bg-white/70 px-4 py-3 text-sm dark:bg-zinc-800/70">
                 <p class="font-semibold">Ridgeline Series • Hand-wound pickups</p>
-                <a href="#pricing" class="font-bold text-ember hover:underline">View Plans</a>
+                <a href="#pricing" aria-label="View pricing plans" class="ripple-btn font-bold text-ember hover:underline">View Plans</a>
               </div>
             </article>
           </div>
@@ -128,7 +135,7 @@
             <p class="mt-6 text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
               Too many guitars are built to hit numbers, not to reveal character. They look identical, respond predictably, and leave players searching for soul. Ashborne exists for musicians who want an instrument with history in its wood, intention in its carve, and a tone that grows with every session.
             </p>
-            <a href="#features" class="mt-8 inline-flex rounded-full bg-ember px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:-translate-y-0.5">See How We Build Differently</a>
+            <a href="#features" aria-label="Explore product features" class="cta-action ripple-btn mt-8 inline-flex rounded-full bg-ember px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:-translate-y-0.5">See How We Build Differently</a>
           </div>
         </div>
       </section>
@@ -141,12 +148,12 @@
               <p class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700 dark:text-moss">Three Reasons Artists Choose Ashborne</p>
               <h2 class="mt-3 font-serif text-3xl md:text-4xl">Built by hands that listen to wood.</h2>
             </div>
-            <a href="#pricing" class="rounded-full border border-black/15 px-5 py-2 text-sm font-bold transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Configure Your Model</a>
+            <a href="#pricing" aria-label="Configure your guitar model" class="cta-action cta-pulse ripple-btn rounded-full border border-black/15 px-5 py-2 text-sm font-bold transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Configure Your Model</a>
           </div>
 
-          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3" data-stagger-group>
             <article class="reveal feature-card rounded-3xl border border-black/10 bg-white/75 p-7 dark:border-white/10 dark:bg-zinc-900/70">
-              <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-ember/15 text-ember">
+              <div class="icon-animate mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-ember/15 text-ember">
                 <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8">
                   <path d="M4 18c3-8 13-13 16-12-2 3-4 13-12 16" />
                   <path d="M9 15c.5.8 1.2 1.5 2 2" />
@@ -157,7 +164,7 @@
             </article>
 
             <article class="reveal delay-1 feature-card rounded-3xl border border-black/10 bg-white/75 p-7 dark:border-white/10 dark:bg-zinc-900/70">
-              <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-moss/30 text-emerald-800 dark:text-moss">
+              <div class="icon-animate mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-moss/30 text-emerald-800 dark:text-moss">
                 <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8">
                   <path d="M5 19V7l7-3 7 3v12" />
                   <path d="M9 10h6M9 14h6" />
@@ -168,7 +175,7 @@
             </article>
 
             <article class="reveal delay-2 feature-card rounded-3xl border border-black/10 bg-white/75 p-7 dark:border-white/10 dark:bg-zinc-900/70 md:col-span-2 xl:col-span-1">
-              <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-clay/40 text-amber-800 dark:text-clay">
+              <div class="icon-animate mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-clay/40 text-amber-800 dark:text-clay">
                 <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8">
                   <circle cx="12" cy="12" r="8" />
                   <path d="M12 8v4l2.5 2.5" />
@@ -193,7 +200,7 @@
             <figure class="reveal rounded-3xl border border-black/10 bg-white/80 p-7 dark:border-white/10 dark:bg-zinc-900/70">
               <blockquote class="text-lg leading-relaxed">“My Ridgeline opens up every mix. Glassy cleans, thick mids, zero mud. It feels like an old friend after one rehearsal.”</blockquote>
               <figcaption class="mt-6 flex items-center gap-3">
-                <img src="https://i.pravatar.cc/96?img=12" alt="Portrait of Marissa Vance" class="h-12 w-12 rounded-full object-cover" />
+                <img src="https://i.pravatar.cc/96?img=12" alt="Portrait of Marissa Vance" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
                 <div>
                   <p class="font-bold">Marissa Vance</p>
                   <p class="text-sm text-zinc-600 dark:text-zinc-400">Touring Guitarist • Northline</p>
@@ -204,7 +211,7 @@
             <figure class="reveal delay-1 rounded-3xl border border-black/10 bg-white/80 p-7 dark:border-white/10 dark:bg-zinc-900/70">
               <blockquote class="text-lg leading-relaxed">“The Canopy archtop is the first guitar that gave me warmth and note separation without compromise. It records beautifully.”</blockquote>
               <figcaption class="mt-6 flex items-center gap-3">
-                <img src="https://i.pravatar.cc/96?img=33" alt="Portrait of Daniel Ko" class="h-12 w-12 rounded-full object-cover" />
+                <img src="https://i.pravatar.cc/96?img=33" alt="Portrait of Daniel Ko" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
                 <div>
                   <p class="font-bold">Daniel Ko</p>
                   <p class="text-sm text-zinc-600 dark:text-zinc-400">Session Musician • Blue Ember Studio</p>
@@ -215,7 +222,7 @@
             <figure class="reveal delay-2 rounded-3xl border border-black/10 bg-white/80 p-7 dark:border-white/10 dark:bg-zinc-900/70">
               <blockquote class="text-lg leading-relaxed">“I play five nights a week. My Understory bass stays articulate, punchy, and incredibly comfortable through every set.”</blockquote>
               <figcaption class="mt-6 flex items-center gap-3">
-                <img src="https://i.pravatar.cc/96?img=52" alt="Portrait of June Patel" class="h-12 w-12 rounded-full object-cover" />
+                <img src="https://i.pravatar.cc/96?img=52" alt="Portrait of June Patel" loading="lazy" decoding="async" class="h-12 w-12 rounded-full object-cover" />
                 <div>
                   <p class="font-bold">June Patel</p>
                   <p class="text-sm text-zinc-600 dark:text-zinc-400">Bassist • The Low Pines</p>
@@ -235,45 +242,93 @@
             <p class="mx-auto mt-5 max-w-2xl text-zinc-700 dark:text-zinc-300">Each plan includes personalized setup and a build consultation. Upgrade anytime as your sound evolves.</p>
           </div>
 
-          <div class="grid gap-6 lg:grid-cols-3">
-            <article class="reveal rounded-3xl border border-black/10 bg-white/85 p-8 dark:border-white/10 dark:bg-zinc-900/70">
+          <div class="pricing-controls reveal rounded-3xl border border-black/10 bg-white/80 p-6 dark:border-white/10 dark:bg-zinc-900/60">
+            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div class="space-y-3">
+                <p class="text-sm font-semibold uppercase tracking-[0.14em] text-zinc-700 dark:text-zinc-300">Billing</p>
+                <div class="inline-flex items-center gap-3 rounded-full border border-black/10 bg-white/85 p-1 dark:border-white/15 dark:bg-zinc-950/50" role="group" aria-label="Billing cycle">
+                  <button id="billing-monthly" type="button" class="billing-toggle-btn rounded-full px-4 py-2 text-sm font-semibold" aria-pressed="false">Monthly</button>
+                  <button id="billing-annual" type="button" class="billing-toggle-btn rounded-full px-4 py-2 text-sm font-semibold" aria-pressed="false">Annual</button>
+                </div>
+                <p id="annual-savings-label" class="text-sm font-semibold text-emerald-700 dark:text-moss" aria-live="polite">Pay annually and save 18%.</p>
+                <p class="text-xs text-zinc-600 dark:text-zinc-400">To compare, click one plan card and then click a second card.</p>
+              </div>
+
+              <div class="w-full max-w-md space-y-2 lg:mx-8" role="group" aria-labelledby="users-label">
+                <div class="flex items-center justify-between text-sm">
+                  <p id="users-label" class="font-semibold text-zinc-700 dark:text-zinc-200">Team size</p>
+                  <p class="font-bold"><span id="users-count">1</span> users</p>
+                </div>
+                <input
+                  id="users-slider"
+                  class="users-slider h-2 w-full cursor-pointer appearance-none rounded-full"
+                  type="range"
+                  min="1"
+                  max="24"
+                  step="1"
+                  value="1"
+                  aria-describedby="users-hint"
+                />
+                <p id="users-hint" class="text-xs text-zinc-600 dark:text-zinc-400">Drag, tap, or use arrow keys to adjust users.</p>
+              </div>
+
+              <div class="flex flex-wrap gap-3 lg:justify-end">
+                <button id="recommend-plan-btn" type="button" class="ripple-btn rounded-full border border-black/15 bg-white/80 px-5 py-2.5 text-sm font-bold transition hover:-translate-y-0.5 dark:border-white/20 dark:bg-zinc-950/50">
+                  Recommended plan for you
+                </button>
+                <button id="compare-plans-btn" type="button" class="ripple-btn rounded-full bg-bark px-5 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 dark:bg-white dark:text-zinc-900" aria-expanded="false">
+                  Compare plans
+                </button>
+              </div>
+            </div>
+            <p id="pricing-announce" class="sr-only" aria-live="polite"></p>
+          </div>
+
+          <div id="pricing-grid" class="pricing-grid mt-6 grid gap-6 lg:grid-cols-3" data-billing="monthly" data-users="1">
+            <article class="pricing-card reveal rounded-3xl border border-black/10 bg-white/85 p-8 dark:border-white/10 dark:bg-zinc-900/70" data-plan="basic" data-base-monthly="1200" data-per-user="120" data-annual-discount="18">
               <p class="text-sm font-bold uppercase tracking-[0.18em] text-ember">Basic</p>
-              <p class="mt-4 text-5xl font-extrabold">$1,200</p>
-              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Players Series entry line</p>
+              <p class="mt-4 text-5xl font-extrabold" data-price-value>$1,200</p>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400" data-price-period>Billed monthly</p>
+              <p class="mt-1 text-xs font-semibold text-emerald-700 dark:text-moss" data-save-message aria-live="polite"></p>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Players Series entry line</p>
               <ul class="mt-6 space-y-3 text-sm">
-                <li>Players Acoustic or Electric model</li>
-                <li>Sustainably sourced tonewoods</li>
-                <li>Standard hand setup</li>
-                <li>2-year workshop support</li>
+                <li class="pricing-feature" data-feature="model-entry" data-compare-slot="instrument">Players Acoustic or Electric model</li>
+                <li class="pricing-feature" data-feature="tonewood" data-compare-slot="build">Sustainably sourced tonewoods</li>
+                <li class="pricing-feature" data-feature="setup-standard" data-compare-slot="consultation">Standard hand setup</li>
+                <li class="pricing-feature" data-feature="support-2year" data-compare-slot="priority">2-year workshop support</li>
               </ul>
-              <a href="#top" class="mt-8 inline-flex w-full justify-center rounded-xl border border-black/15 px-4 py-3 text-sm font-bold transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Start with Basic</a>
+              <a href="#top" aria-label="Start with basic plan" class="cta-action ripple-btn mt-8 inline-flex w-full justify-center rounded-xl border border-black/15 px-4 py-3 text-sm font-bold transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Start with Basic</a>
             </article>
 
-            <article class="reveal delay-1 relative rounded-3xl border-2 border-ember bg-gradient-to-b from-amber-50 to-white p-8 shadow-glow dark:from-zinc-900 dark:to-zinc-900">
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-ember px-4 py-1 text-xs font-bold uppercase tracking-wider text-white">Most Chosen</span>
+            <article class="pricing-card glass-card reveal delay-1 relative rounded-3xl border-2 border-ember bg-gradient-to-b from-amber-50 to-white p-8 shadow-glow dark:from-zinc-900 dark:to-zinc-900" data-plan="pro" data-base-monthly="3200" data-per-user="210" data-annual-discount="18">
+              <span id="most-chosen-badge" class="most-chosen-badge" aria-hidden="true">Most Chosen</span>
               <p class="text-sm font-bold uppercase tracking-[0.18em] text-ember">Pro</p>
-              <p class="mt-4 text-5xl font-extrabold">$3,200</p>
-              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Ridgeline signature performance</p>
+              <p class="mt-4 text-5xl font-extrabold" data-price-value>$3,200</p>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400" data-price-period>Billed monthly</p>
+              <p class="mt-1 text-xs font-semibold text-emerald-700 dark:text-moss" data-save-message aria-live="polite"></p>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Ridgeline signature performance</p>
               <ul class="mt-6 space-y-3 text-sm">
-                <li>Ridgeline electric or Hearthstone acoustic</li>
-                <li>Hand-wound Ashborne pickup options</li>
-                <li>Priority luthier consultation</li>
-                <li>Custom neck profile and finish choices</li>
+                <li class="pricing-feature" data-feature="model-ridgeline" data-compare-slot="instrument">Ridgeline electric or Hearthstone acoustic</li>
+                <li class="pricing-feature" data-feature="pickup-handwound" data-compare-slot="build">Hand-wound Ashborne pickup options</li>
+                <li class="pricing-feature" data-feature="consult-priority" data-compare-slot="consultation">Priority luthier consultation</li>
+                <li class="pricing-feature" data-feature="neck-custom" data-compare-slot="priority">Custom neck profile and finish choices</li>
               </ul>
-              <a href="#top" class="mt-8 inline-flex w-full justify-center rounded-xl bg-bark px-4 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 dark:bg-white dark:text-zinc-900">Claim the Pro Build</a>
+              <a href="#top" aria-label="Claim the pro build plan" class="cta-action cta-pulse ripple-btn mt-8 inline-flex w-full justify-center rounded-xl bg-bark px-4 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 dark:bg-white dark:text-zinc-900">Claim the Pro Build</a>
             </article>
 
-            <article class="reveal delay-2 rounded-3xl border border-black/10 bg-white/85 p-8 dark:border-white/10 dark:bg-zinc-900/70">
+            <article class="pricing-card reveal delay-2 rounded-3xl border border-black/10 bg-white/85 p-8 dark:border-white/10 dark:bg-zinc-900/70" data-plan="premium" data-base-monthly="4500" data-per-user="280" data-annual-discount="18">
               <p class="text-sm font-bold uppercase tracking-[0.18em] text-emerald-700 dark:text-moss">Premium</p>
-              <p class="mt-4 text-5xl font-extrabold">$4,500+</p>
-              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Canopy, Salvage, and collector builds</p>
+              <p class="mt-4 text-5xl font-extrabold" data-price-value>$4,500</p>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400" data-price-period>Billed monthly</p>
+              <p class="mt-1 text-xs font-semibold text-emerald-700 dark:text-moss" data-save-message aria-live="polite"></p>
+              <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">Canopy, Salvage, and collector builds</p>
               <ul class="mt-6 space-y-3 text-sm">
-                <li>Canopy archtop or limited Salvage Collection</li>
-                <li>Provenance and timber documentation</li>
-                <li>One-on-one voicing session</li>
-                <li>Lifetime annual setup priority</li>
+                <li class="pricing-feature" data-feature="model-canopy" data-compare-slot="instrument">Canopy archtop or limited Salvage Collection</li>
+                <li class="pricing-feature" data-feature="docs-provenance" data-compare-slot="build">Provenance and timber documentation</li>
+                <li class="pricing-feature" data-feature="voicing-session" data-compare-slot="consultation">One-on-one voicing session</li>
+                <li class="pricing-feature" data-feature="setup-lifetime" data-compare-slot="priority">Lifetime annual setup priority</li>
               </ul>
-              <a href="#top" class="mt-8 inline-flex w-full justify-center rounded-xl border border-black/15 px-4 py-3 text-sm font-bold transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Request Premium Consult</a>
+              <a href="#top" aria-label="Request premium consultation" class="cta-action ripple-btn mt-8 inline-flex w-full justify-center rounded-xl border border-black/15 px-4 py-3 text-sm font-bold transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Request Premium Consult</a>
             </article>
           </div>
         </div>
@@ -286,8 +341,8 @@
             <h2 class="font-serif text-3xl md:text-4xl">Your next song deserves an instrument with a story.</h2>
             <p class="mx-auto mt-5 max-w-2xl text-zinc-700 dark:text-zinc-300">Tell us how you play, what you hear, and where you want your tone to go. We will shape the grain around your voice.</p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
-              <a href="#pricing" class="rounded-full bg-ember px-7 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:-translate-y-0.5">Book Your Build Call</a>
-              <a href="#testimonials" class="rounded-full border border-black/15 px-7 py-3 text-sm font-bold uppercase tracking-wide transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Hear From Artists</a>
+              <a href="#pricing" aria-label="Book your build consultation call" class="cta-action cta-pulse ripple-btn rounded-full bg-ember px-7 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:-translate-y-0.5">Book Your Build Call</a>
+              <a href="#testimonials" aria-label="Read artist testimonials" class="ripple-btn rounded-full border border-black/15 px-7 py-3 text-sm font-bold uppercase tracking-wide transition hover:bg-black hover:text-white dark:border-white/20 dark:hover:bg-white dark:hover:text-black">Hear From Artists</a>
             </div>
           </article>
         </div>

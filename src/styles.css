@@ -15,7 +15,7 @@
 
 body {
   font-family: "Manrope", sans-serif;
-  transition: background-color 300ms ease, color 300ms ease;
+  transition: background-color 360ms ease, color 360ms ease;
 }
 
 html[data-theme="light"] body {
@@ -26,15 +26,6 @@ html[data-theme="light"] body {
 html[data-theme="light"] header {
   background-color: rgba(255, 255, 255, 0.86);
   border-color: rgba(17, 24, 39, 0.08);
-}
-
-html[data-theme="light"] main > section,
-html[data-theme="light"] section > div,
-html[data-theme="light"] section article,
-html[data-theme="light"] section figure,
-html[data-theme="light"] footer {
-  background-color: #ffffff !important;
-  background-image: none !important;
 }
 
 html[data-theme="light"] p,
@@ -114,6 +105,8 @@ h3,
   position: fixed;
   inset: 0;
   z-index: -1;
+  will-change: transform;
+  transition: transform 180ms linear;
   background-image:
     radial-gradient(circle at 12% 14%, rgba(225, 139, 10, 0.16), transparent 42%),
     radial-gradient(circle at 88% 6%, rgba(181, 212, 99, 0.16), transparent 40%),
@@ -142,6 +135,7 @@ h3,
 
 .feature-card {
   transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+  will-change: transform;
 }
 
 .feature-card:hover {
@@ -153,7 +147,8 @@ h3,
 .reveal {
   opacity: 0;
   transform: translateY(24px) scale(0.985);
-  transition: opacity 650ms ease, transform 650ms ease;
+  transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1), transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
 }
 
 .reveal.is-visible {
@@ -169,11 +164,422 @@ h3,
   transition-delay: 220ms;
 }
 
+.hero-section {
+  isolation: isolate;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: -20% -8% auto -8%;
+  height: 130%;
+  z-index: -1;
+  background: linear-gradient(120deg, rgba(225, 139, 10, 0.16), rgba(181, 212, 99, 0.1), rgba(226, 183, 147, 0.16), rgba(225, 139, 10, 0.12));
+  background-size: 220% 220%;
+  animation: heroGradientShift 16s ease-in-out infinite;
+  filter: saturate(112%);
+}
+
+.dark .hero-gradient {
+  background: linear-gradient(120deg, rgba(225, 139, 10, 0.12), rgba(181, 212, 99, 0.08), rgba(226, 183, 147, 0.1), rgba(225, 139, 10, 0.1));
+}
+
+.geo-shape {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08));
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.14);
+  will-change: transform;
+  animation: floaty 8s ease-in-out infinite;
+}
+
+.shape-a {
+  top: 8%;
+  left: 3%;
+  width: 110px;
+  height: 110px;
+  border-radius: 30px;
+}
+
+.shape-b {
+  top: 12%;
+  right: 6%;
+  width: 160px;
+  height: 80px;
+  border-radius: 999px;
+  animation-delay: -2.2s;
+}
+
+.shape-c {
+  bottom: 9%;
+  right: 19%;
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+  transform: rotate(24deg);
+  animation-delay: -4.5s;
+}
+
+.hero-content,
+.hero-media {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+body.page-ready .hero-content {
+  animation: dramaticFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+}
+
+body.page-ready .hero-media {
+  animation: dramaticFadeIn 1.05s cubic-bezier(0.22, 1, 0.36, 1) 260ms forwards;
+}
+
+.icon-animate {
+  transform: scale(0.88) rotate(-8deg);
+  opacity: 0;
+  transition: transform 420ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 420ms ease;
+}
+
+.icon-animate.is-visible {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+.pricing-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 280ms ease, border-color 280ms ease, background-color 280ms ease;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
+  will-change: transform;
+}
+
+.pricing-card:hover {
+  box-shadow: 0 24px 52px rgba(15, 23, 42, 0.16);
+}
+
+.pricing-controls {
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+}
+
+#annual-savings-label {
+  min-height: 1.5rem;
+}
+
+.billing-toggle-btn {
+  color: rgb(63 63 70);
+  transition: background-color 220ms ease, color 220ms ease, transform 220ms ease;
+}
+
+.billing-toggle-btn[aria-pressed="true"] {
+  background-color: rgb(225 139 10);
+  color: white;
+}
+
+.billing-toggle-btn:hover {
+  transform: translateY(-1px);
+}
+
+.users-slider {
+  background: linear-gradient(to right, rgba(225, 139, 10, 0.65), rgba(181, 212, 99, 0.45));
+}
+
+.users-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+}
+
+.users-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(225, 139, 10, 0.6);
+  background: white;
+  margin-top: -5px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.users-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, rgba(225, 139, 10, 0.65), rgba(181, 212, 99, 0.45));
+}
+
+.users-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(225, 139, 10, 0.6);
+  background: white;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.dark .billing-toggle-btn {
+  color: rgb(228 228 231);
+}
+
+.dark .users-slider::-webkit-slider-thumb,
+.dark .users-slider::-moz-range-thumb {
+  background: rgb(24 24 27);
+}
+
+.pricing-card .pricing-feature {
+  transition: color 220ms ease, transform 220ms ease, opacity 220ms ease;
+}
+
+.pricing-card.is-dimmed {
+  opacity: 0.75;
+  transform: scale(0.985);
+}
+
+.pricing-card.is-hovered {
+  border-color: rgba(225, 139, 10, 0.5);
+}
+
+.pricing-card .pricing-feature.feature-diff {
+  color: rgb(180 83 9);
+  transform: translateX(4px);
+  font-weight: 700;
+}
+
+.dark .pricing-card .pricing-feature.feature-diff {
+  color: rgb(181 212 99);
+}
+
+.pricing-card.recommended {
+  border-color: rgba(225, 139, 10, 0.75);
+  box-shadow: 0 22px 44px rgba(225, 139, 10, 0.24);
+}
+
+.most-chosen-badge {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border-radius: 999px;
+  background: rgb(225 139 10);
+  padding: 0.25rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 260ms ease, visibility 0s linear 260ms;
+  z-index: 2;
+}
+
+.most-chosen-badge.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -105%);
+  transition-delay: 0s, 0s, 0s;
+}
+
+.pricing-card.compare-selected {
+  border-color: rgba(225, 139, 10, 0.8);
+  box-shadow: 0 26px 56px rgba(225, 139, 10, 0.24);
+}
+
+.pricing-card.compare-muted {
+  filter: blur(2px) saturate(0.8);
+  opacity: 0.45;
+  transform: scale(0.975);
+}
+
+.pricing-card .feature-label {
+  display: inline-block;
+  min-width: 7.1rem;
+  margin-right: 0.45rem;
+  font-weight: 700;
+  color: rgb(63 63 70);
+}
+
+.dark .pricing-card .feature-label {
+  color: rgb(212 212 216);
+}
+
+.pricing-grid.compare-active {
+  align-items: stretch;
+}
+
+.pricing-grid.compare-active .pricing-card {
+  min-height: 100%;
+}
+
+#compare-plans-btn.is-active {
+  box-shadow: 0 10px 24px rgba(225, 139, 10, 0.28);
+}
+
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 999px;
+  transform: scale(0);
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.44);
+  animation: ripplePulse 560ms ease-out;
+}
+
+.cta-pulse {
+  animation: ctaPulse 2.6s ease-in-out infinite;
+}
+
+.cta-action {
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, opacity 220ms ease;
+}
+
+.cta-action.is-loading {
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.cta-action.is-loading::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  margin-left: 10px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+
+#theme-toggle {
+  transition: transform 240ms ease, box-shadow 240ms ease, background-color 240ms ease, color 240ms ease;
+}
+
+#theme-toggle:focus-visible,
+.cta-action:focus-visible,
+.ripple-btn:focus-visible {
+  outline: 2px solid rgba(225, 139, 10, 0.6);
+  outline-offset: 3px;
+}
+
+#theme-icon {
+  display: inline-flex;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease;
+}
+
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, box-shadow 300ms ease !important;
+}
+
+@keyframes dramaticFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes ripplePulse {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+@keyframes ctaPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(225, 139, 10, 0.28);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(225, 139, 10, 0);
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 768px) {
+  .hero-gradient {
+    inset: -16% -14% auto -14%;
+    height: 122%;
+  }
+
+  .shape-a {
+    width: 82px;
+    height: 82px;
+  }
+
+  .shape-b {
+    width: 118px;
+    height: 64px;
+  }
+
+  .shape-c {
+    width: 70px;
+    height: 70px;
+    right: 8%;
+  }
+
   .reveal,
   .reveal.delay-1,
   .reveal.delay-2 {
     transition-delay: 0ms;
+  }
+
+  .pricing-grid.compare-active {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+
+  .pricing-grid.compare-active .pricing-card {
+    min-width: 80vw;
+    scroll-snap-align: start;
+    flex: 0 0 auto;
   }
 }
 
@@ -187,6 +593,13 @@ h3,
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  .hero-content,
+  .hero-media,
+  .icon-animate {
+    opacity: 1;
+    transform: none;
   }
 
   .reveal {
