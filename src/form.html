@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/img/4geeks.ico" />
+    <title>Ashborne Guitars | Reserve Your Build</title>
+    <meta
+      name="description"
+      content="Reserve your Ashborne guitar build through a smart multi-step form tailored to your instrument preferences and musical profile."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind = {
+        config: {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                paper: "#FBFBFE",
+                ember: "#E18B0A",
+                clay: "#E2B793",
+                moss: "#B5D463",
+                bark: "#2F2A25",
+              },
+              boxShadow: {
+                glow: "0 12px 40px rgba(225, 139, 10, 0.22)",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      const themeRoot = document.documentElement;
+      const storedTheme = localStorage.getItem("ashborne-theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
+        themeRoot.classList.add("dark");
+      }
+      const initialDark = themeRoot.classList.contains("dark");
+      themeRoot.setAttribute("data-theme", initialDark ? "dark" : "light");
+      themeRoot.style.colorScheme = initialDark ? "dark" : "light";
+    </script>
+
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .form-step {
+        display: none;
+      }
+
+      .form-step.is-active {
+        display: block;
+        animation: stepFadeIn 280ms ease;
+      }
+
+      .field-error {
+        margin-top: 0.35rem;
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #b91c1c;
+      }
+
+      .dark .field-error {
+        color: #fca5a5;
+      }
+
+      .modal-open {
+        overflow: hidden;
+      }
+
+      html[data-theme="light"] article[role="dialog"],
+      html[data-theme="light"] article[role="dialog"] * {
+        background-color: #ffffff !important;
+        background-image: none !important;
+        color: #000000 !important;
+      }
+
+      html[data-theme="light"] article[role="dialog"] input,
+      html[data-theme="light"] article[role="dialog"] select,
+      html[data-theme="light"] article[role="dialog"] textarea {
+        border-color: #000000 !important;
+        background-color: whitesmoke !important;
+        color: #000000 !important;
+      }
+
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="1"] input,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="1"] select,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="1"] textarea,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="2"] input,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="2"] select,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="2"] textarea,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="3"] input,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="3"] select,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="3"] textarea {
+        border-color: #000000 !important;
+        background-color: whitesmoke !important;
+        color: #000000 !important;
+      }
+
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="2"] label.inline-flex,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="3"] label.inline-flex,
+      html[data-theme="light"] article[role="dialog"] .form-step[data-step="3"] label.relative.block {
+        border-color: #000000 !important;
+        background-color: whitesmoke !important;
+        color: #000000 !important;
+      }
+
+      html[data-theme="light"] article[role="dialog"] input[type="checkbox"],
+      html[data-theme="light"] article[role="dialog"] input[type="radio"] {
+        accent-color: #000000;
+        border: 1px solid #000000 !important;
+        background-color: whitesmoke !important;
+      }
+
+      html[data-theme="light"] header a[href="/form.html"] {
+        color: #000000 !important;
+      }
+
+      @keyframes stepFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .form-step.is-active {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-paper text-bark antialiased dark:bg-zinc-950 dark:text-zinc-100">
+    <div class="ambient-bg" aria-hidden="true"></div>
+
+    <header class="sticky top-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-900/70">
+      <div class="mx-auto flex w-[min(1120px,92%)] items-center justify-between py-4">
+        <a href="/index.html#top" class="font-serif text-xl font-bold tracking-tight">Ashborne Guitars</a>
+        <nav class="hidden items-center gap-8 text-sm font-semibold md:flex">
+          <a href="/index.html#craft" class="hover:text-ember">Craft</a>
+          <a href="/index.html#features" class="hover:text-ember">Features</a>
+          <a href="/index.html#testimonials" class="hover:text-ember">Artists</a>
+          <a href="/index.html#pricing" class="hover:text-ember">Pricing</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <button
+            id="theme-toggle"
+            class="ripple-btn inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-bark transition hover:scale-105 dark:border-white/15 dark:bg-zinc-800 dark:text-zinc-100"
+            aria-label="Toggle light and dark mode"
+          >
+            <span id="theme-icon" aria-hidden="true">◐</span>
+          </button>
+          <a href="/form.html" aria-label="Go to pricing plans" class="cta-action cta-pulse ripple-btn rounded-full bg-ember px-5 py-2.5 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5">Build Yours</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="py-14 md:py-20">
+      <section class="relative overflow-hidden">
+        <div class="hero-gradient" aria-hidden="true"></div>
+        <div class="geo-shape shape-a" data-parallax="0.08" aria-hidden="true"></div>
+        <div class="geo-shape shape-b" data-parallax="0.14" aria-hidden="true"></div>
+        <div class="geo-shape shape-c" data-parallax="0.1" aria-hidden="true"></div>
+
+        <div class="mx-auto w-[min(980px,92%)] space-y-8">
+          <div class="reveal text-center">
+            <p class="inline-flex items-center gap-2 rounded-full border border-ember/40 bg-ember/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-900 dark:text-amber-300">
+              Custom Reservation Flow
+            </p>
+            <h1 class="mt-5 font-serif text-4xl leading-tight md:text-5xl">Reserve your one-of-a-kind Ashborne build.</h1>
+            <p class="mx-auto mt-4 max-w-2xl text-lg text-zinc-700 dark:text-zinc-300">
+              Tell us how you play, the voice you are chasing, and your build preferences. This smart form adapts to your selections and prepares your luthier consultation.
+            </p>
+            <button id="open-modal" type="button" class="mt-6 cta-action ripple-btn rounded-full bg-ember px-6 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-glow transition hover:-translate-y-0.5">Open Reservation Form</button>
+          </div>
+
+          <div id="form-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-8">
+            <div id="modal-backdrop" class="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
+
+            <article role="dialog" aria-modal="true" aria-labelledby="form-modal-title" class="glass-card reveal relative z-10 max-h-[92vh] w-[min(980px,100%)] overflow-y-auto rounded-[2rem] border border-black/10 p-6 shadow-xl dark:border-white/10 md:p-8">
+              <button id="close-modal" type="button" class="ripple-btn absolute right-5 top-5 inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-white/80 text-base font-bold text-zinc-700 transition hover:scale-105 dark:border-white/15 dark:bg-zinc-800 dark:text-zinc-100" aria-label="Close reservation form">&times;</button>
+            <div class="mb-8 space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <p class="text-sm font-bold uppercase tracking-[0.16em] text-zinc-700 dark:text-zinc-300">Build Reservation Progress</p>
+                <p id="step-counter" class="mr-[5%] text-sm font-semibold text-ember" aria-live="polite">Step 1 of 3</p>
+              </div>
+              <div class="h-2 w-full overflow-hidden rounded-full bg-zinc-200/70 dark:bg-zinc-800/80">
+                <div id="progress-indicator" class="h-full rounded-full bg-gradient-to-r from-ember to-moss transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <form id="reservation-form" class="space-y-8" novalidate>
+              <section class="form-step is-active space-y-6" data-step="1">
+                <h2 id="form-modal-title" class="font-serif text-3xl">Basic Info</h2>
+                <p class="text-zinc-700 dark:text-zinc-300">Start with a few details so we can send your tailored recommendation and next steps.</p>
+                <div class="grid gap-5 md:grid-cols-2">
+                  <label class="space-y-2">
+                    <span class="text-sm font-semibold">Full name</span>
+                    <input id="full-name-input" name="fullName" type="text" minlength="2" required class="w-full rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm outline-none transition focus:border-ember focus:ring-2 focus:ring-ember/30 dark:border-white/15 dark:bg-zinc-900/70" placeholder="June Ashborne" />
+                    <span id="full-name-helper" class="hidden field-error">Please enter your full name.</span>
+                  </label>
+                  <label class="space-y-2">
+                    <span class="text-sm font-semibold">Email</span>
+                    <input id="email-input" name="email" type="email" required class="w-full rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm outline-none transition focus:border-ember focus:ring-2 focus:ring-ember/30 dark:border-white/15 dark:bg-zinc-900/70" placeholder="you@example.com" />
+                    <span id="email-helper" class="hidden field-error">Please enter a valid email address.</span>
+                  </label>
+                  <label class="space-y-2 md:col-span-2">
+                    <span class="text-sm font-semibold">Company <span class="text-zinc-500">(optional)</span></span>
+                    <input name="company" type="text" class="w-full rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm outline-none transition focus:border-ember focus:ring-2 focus:ring-ember/30 dark:border-white/15 dark:bg-zinc-900/70" placeholder="Ashborne Sessions LLC" />
+                  </label>
+                </div>
+              </section>
+
+              <section class="form-step space-y-6" data-step="2">
+                <h2 class="font-serif text-3xl">Your Needs</h2>
+                <p class="text-zinc-700 dark:text-zinc-300">Tell us what you are looking for so we can tailor your consultation with the right team.</p>
+                <div class="space-y-6">
+                  <fieldset class="space-y-3">
+                    <legend class="text-sm font-semibold">What are you looking for? <span class="text-red-700 dark:text-red-300">*</span></legend>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                      <label class="inline-flex items-center gap-3 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input class="needs-checkbox" type="checkbox" name="needs" value="Hearthstone acoustic build" /> Hearthstone acoustic build</label>
+                      <label class="inline-flex items-center gap-3 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input class="needs-checkbox" type="checkbox" name="needs" value="Ridgeline electric build" /> Ridgeline electric build</label>
+                      <label class="inline-flex items-center gap-3 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input class="needs-checkbox" type="checkbox" name="needs" value="Canopy archtop jazz build" /> Canopy archtop jazz build</label>
+                      <label class="inline-flex items-center gap-3 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input class="needs-checkbox" type="checkbox" name="needs" value="Understory bass build" /> Understory bass build</label>
+                      <label class="inline-flex items-center gap-3 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input class="needs-checkbox" type="checkbox" name="needs" value="Players series package" /> Players series package</label>
+                      <label class="inline-flex items-center gap-3 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input class="needs-checkbox" type="checkbox" name="needs" value="Salvage collection consultation" /> Salvage collection consultation</label>
+                    </div>
+                    <span id="needs-helper" class="hidden field-error">Select at least one option.</span>
+                  </fieldset>
+
+                  <label class="space-y-2 block">
+                    <span class="text-sm font-semibold">How many users?</span>
+                    <select id="users-input" name="users" required class="w-full rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm outline-none transition focus:border-ember focus:ring-2 focus:ring-ember/30 dark:border-white/15 dark:bg-zinc-900/70">
+                      <option value="">Select a range</option>
+                      <option value="1">1</option>
+                      <option value="2-5">2-5</option>
+                      <option value="6-10">6-10</option>
+                      <option value="11-25">11-25</option>
+                      <option value="26+">26+</option>
+                    </select>
+                    <span id="users-helper" class="hidden field-error">Please select how many users.</span>
+                  </label>
+
+                  <fieldset class="space-y-3">
+                    <legend class="text-sm font-semibold">When do you want to start?</legend>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                      <label class="inline-flex items-center gap-2 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input type="radio" name="startTime" value="Immediately" required /> Immediately</label>
+                      <label class="inline-flex items-center gap-2 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input type="radio" name="startTime" value="This month" required /> This month</label>
+                      <label class="inline-flex items-center gap-2 rounded-xl border border-black/15 bg-white/80 px-4 py-3 text-sm dark:border-white/15 dark:bg-zinc-900/70"><input type="radio" name="startTime" value="Next month" required /> Next month</label>
+                    </div>
+                    <span id="start-time-helper" class="hidden field-error">Select your preferred start window.</span>
+                  </fieldset>
+                </div>
+              </section>
+
+              <section class="form-step space-y-6" data-step="3">
+                <h2 class="font-serif text-3xl">Select Your Plan</h2>
+                <p class="text-zinc-700 dark:text-zinc-300">Choose a plan to finalize your request. Signature is recommended for most teams and studios.</p>
+
+                <fieldset class="space-y-3">
+                  <legend class="text-sm font-semibold">Available plans</legend>
+                  <div class="grid gap-4 lg:grid-cols-3">
+                    <label class="relative block rounded-2xl border border-black/10 bg-white/85 p-5 transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-zinc-900/70">
+                      <input type="radio" name="plan" value="Starter" required class="absolute right-4 top-4" />
+                      <p class="text-xs font-bold uppercase tracking-[0.14em] text-zinc-500">Starter</p>
+                      <p data-plan-price="Starter" class="mt-2 font-serif text-2xl">$1,200/mo</p>
+                      <p data-plan-price-note="Starter" class="mt-1 text-xs font-semibold text-zinc-500 dark:text-zinc-400">for 1 user</p>
+                      <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Best for solo musicians looking to begin with Ashborne quality.</p>
+                    </label>
+
+                    <label class="relative block rounded-2xl border-2 border-ember bg-gradient-to-br from-ember/10 to-moss/10 p-5 shadow-glow transition hover:-translate-y-0.5 dark:border-ember/80">
+                      <span class="absolute left-4 top-4 rounded-full bg-ember px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">Recommended</span>
+                      <input type="radio" name="plan" value="Signature" required checked class="absolute right-4 top-4" />
+                      <p class="pt-5 text-xs font-bold uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-300">Signature</p>
+                      <p data-plan-price="Signature" class="mt-2 font-serif text-2xl">$3,200/mo</p>
+                      <p data-plan-price-note="Signature" class="mt-1 text-xs font-semibold text-zinc-500 dark:text-zinc-400">for 1 user</p>
+                      <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">Ideal for artists and growing teams needing premium customization.</p>
+                    </label>
+
+                    <label class="relative block rounded-2xl border border-black/10 bg-white/85 p-5 transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-zinc-900/70">
+                      <input type="radio" name="plan" value="Heritage" required class="absolute right-4 top-4" />
+                      <p class="text-xs font-bold uppercase tracking-[0.14em] text-zinc-500">Heritage</p>
+                      <p data-plan-price="Heritage" class="mt-2 font-serif text-2xl">$4,500/mo</p>
+                      <p data-plan-price-note="Heritage" class="mt-1 text-xs font-semibold text-zinc-500 dark:text-zinc-400">for 1 user</p>
+                      <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-300">For boutique studios, collectors, and high-touch concierge builds.</p>
+                    </label>
+                  </div>
+                  <span id="plan-helper" class="hidden field-error">Please select a plan.</span>
+                </fieldset>
+
+                <p class="rounded-xl border border-moss/40 bg-moss/20 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-100">Most requests are reviewed in under 1 business day. Early planning improves your delivery window.</p>
+                <div id="summary-panel" class="rounded-2xl border border-black/10 bg-white/85 p-5 dark:border-white/10 dark:bg-zinc-900/70"></div>
+                <label class="inline-flex items-start gap-3 rounded-xl border border-black/10 bg-ember/10 p-4 text-sm dark:border-white/10">
+                  <input id="terms-checkbox" type="checkbox" required class="mt-1" />
+                  <span>I confirm the information above is accurate and I agree to be contacted by Ashborne Guitars to finalize my plan.</span>
+                </label>
+              </section>
+
+              <p id="form-error" class="hidden rounded-xl border border-red-500/30 bg-red-50 px-4 py-3 text-sm font-medium text-red-700 dark:bg-red-950/30 dark:text-red-200" role="alert"></p>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 border-t border-black/10 pt-6 dark:border-white/10">
+                <button type="button" id="prev-btn" class="ripple-btn rounded-full border border-black/15 bg-white/80 px-6 py-2.5 text-sm font-bold transition hover:-translate-y-0.5 dark:border-white/20 dark:bg-zinc-900/70">Previous</button>
+                <div class="flex items-center gap-3">
+                  <a href="/index.html" class="text-sm font-semibold text-zinc-600 hover:text-ember dark:text-zinc-300">Back to landing page</a>
+                  <button type="button" id="next-btn" class="cta-action ripple-btn rounded-full bg-bark px-6 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 dark:bg-white dark:text-zinc-900">Next Step</button>
+                  <button type="submit" id="submit-btn" class="cta-action cta-pulse ripple-btn hidden rounded-full bg-ember px-6 py-2.5 text-sm font-bold text-white shadow-glow transition hover:-translate-y-0.5">Reserve Build</button>
+                </div>
+              </div>
+            </form>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-black/10 py-10 text-center text-sm text-zinc-600 dark:border-white/10 dark:text-zinc-400">
+      <p>Ashborne Guitars • Brevard, NC • Privately held workshop since 1987</p>
+    </footer>
+
+    <script type="module" src="/script.js"></script>
+    <script>
+      const form = document.getElementById("reservation-form");
+      const steps = Array.from(document.querySelectorAll(".form-step"));
+      const nextBtn = document.getElementById("next-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const submitBtn = document.getElementById("submit-btn");
+      const stepCounter = document.getElementById("step-counter");
+      const progressIndicator = document.getElementById("progress-indicator");
+      const summaryPanel = document.getElementById("summary-panel");
+      const formError = document.getElementById("form-error");
+      const openModalBtn = document.getElementById("open-modal");
+      const closeModalBtn = document.getElementById("close-modal");
+      const formModal = document.getElementById("form-modal");
+      const modalBackdrop = document.getElementById("modal-backdrop");
+      const fullNameInput = document.getElementById("full-name-input");
+      const emailInput = document.getElementById("email-input");
+      const usersInput = document.getElementById("users-input");
+      const emailHelper = document.getElementById("email-helper");
+      const fullNameHelper = document.getElementById("full-name-helper");
+      const usersHelper = document.getElementById("users-helper");
+      const needsHelper = document.getElementById("needs-helper");
+      const startTimeHelper = document.getElementById("start-time-helper");
+      const planHelper = document.getElementById("plan-helper");
+      const needsCheckboxes = Array.from(document.querySelectorAll(".needs-checkbox"));
+      const startTimeRadios = Array.from(document.querySelectorAll('input[name="startTime"]'));
+      const planRadios = Array.from(document.querySelectorAll('input[name="plan"]'));
+      const planPriceElements = Array.from(document.querySelectorAll("[data-plan-price]"));
+      const planPriceNoteElements = Array.from(document.querySelectorAll("[data-plan-price-note]"));
+      const FORM_DRAFT_KEY = "ashborne-reservation-draft-v1";
+      const PROGRESS_BY_COMPLETED_STEPS = [0, 33, 66, 100];
+      const USERS_RANGE_TO_LIMITS = {
+        "1": [1, 1],
+        "2-5": [2, 5],
+        "6-10": [6, 10],
+        "11-25": [11, 25],
+        "26+": [26, 26],
+      };
+
+      // Mirrors pricing in index.html #pricing cards.
+      const PLAN_PRICING = {
+        Starter: { baseMonthly: 1200, perUser: 120, annualDiscount: 18 },
+        Signature: { baseMonthly: 3200, perUser: 210, annualDiscount: 18 },
+        Heritage: { baseMonthly: 4500, perUser: 280, annualDiscount: 18 },
+      };
+
+      let currentStep = 0;
+      let completedSteps = 0;
+      let isSubmitting = false;
+
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        }).format(value);
+      }
+
+      function computePlanMonthly(baseMonthly, perUser, users) {
+        return baseMonthly + Math.max(users - 1, 0) * perUser;
+      }
+
+      function getSelectedUsersRange() {
+        return usersInput.value || "1";
+      }
+
+      function getUsersBounds(range) {
+        return USERS_RANGE_TO_LIMITS[range] || [1, 1];
+      }
+
+      function setProgressByCompletion() {
+        const width = PROGRESS_BY_COMPLETED_STEPS[completedSteps] ?? 0;
+        progressIndicator.style.width = `${width}%`;
+      }
+
+      function updatePlanPricesFromUsers() {
+        const range = getSelectedUsersRange();
+        const [minUsers, maxUsers] = getUsersBounds(range);
+
+        Object.entries(PLAN_PRICING).forEach(([planName, pricing]) => {
+          const minMonthly = computePlanMonthly(pricing.baseMonthly, pricing.perUser, minUsers);
+          const maxMonthly = computePlanMonthly(pricing.baseMonthly, pricing.perUser, maxUsers);
+          const minAnnual = Math.round(minMonthly * 12 * (1 - pricing.annualDiscount / 100));
+          const maxAnnual = Math.round(maxMonthly * 12 * (1 - pricing.annualDiscount / 100));
+
+          const priceNode = planPriceElements.find((item) => item.dataset.planPrice === planName);
+          const noteNode = planPriceNoteElements.find((item) => item.dataset.planPriceNote === planName);
+
+          if (!priceNode || !noteNode) return;
+
+          if (minUsers === maxUsers) {
+            priceNode.textContent = `${formatCurrency(minMonthly)}/mo`;
+            noteNode.textContent = `for ${minUsers} user${minUsers > 1 ? "s" : ""} • ${formatCurrency(minAnnual)}/year (18% annual savings)`;
+            return;
+          }
+
+          priceNode.textContent = `${formatCurrency(minMonthly)}-${formatCurrency(maxMonthly)}/mo`;
+          noteNode.textContent = `for ${range} users • ${formatCurrency(minAnnual)}-${formatCurrency(maxAnnual)}/year (18% annual savings)`;
+        });
+      }
+
+      function getStepFields(stepIndex) {
+        return steps[stepIndex].querySelectorAll("input, select, textarea");
+      }
+
+      function validateEmailField() {
+        if (!emailInput) return true;
+        const valid = emailInput.checkValidity();
+        emailHelper.classList.toggle("hidden", valid || !emailInput.value);
+        return valid;
+      }
+
+      function validateNameField() {
+        if (!fullNameInput) return true;
+        const valid = fullNameInput.checkValidity();
+        fullNameHelper.classList.toggle("hidden", valid || !fullNameInput.value);
+        return valid;
+      }
+
+      function validateUsersField() {
+        if (!usersInput) return true;
+        const valid = usersInput.checkValidity();
+        usersHelper.classList.toggle("hidden", valid || !usersInput.value);
+        return valid;
+      }
+
+      function validateNeedsSelection() {
+        if (currentStep !== 1) {
+          needsHelper.classList.add("hidden");
+          return true;
+        }
+        const hasAtLeastOne = needsCheckboxes.some((item) => item.checked);
+        needsHelper.classList.toggle("hidden", hasAtLeastOne);
+        if (hasAtLeastOne) return true;
+
+        formError.classList.remove("hidden");
+        formError.classList.remove("border-moss/40", "bg-moss/20", "text-zinc-900", "dark:text-zinc-100");
+        formError.classList.add("bg-red-50", "border-red-500/30", "text-red-700", "dark:bg-red-950/30", "dark:text-red-200");
+        formError.textContent = "Select at least one option in 'What are you looking for?' before continuing.";
+        return false;
+      }
+
+      function validateRadioGroup(radios, helper) {
+        const selected = radios.some((item) => item.checked);
+        helper.classList.toggle("hidden", selected);
+        return selected;
+      }
+
+      function clearGlobalError() {
+        formError.classList.add("hidden");
+      }
+
+      function saveDraft() {
+        const values = {};
+        const elements = form.querySelectorAll("input, select, textarea");
+        elements.forEach((element) => {
+          if (!element.name) return;
+          if (element.type === "checkbox") {
+            if (!Array.isArray(values[element.name])) values[element.name] = [];
+            if (element.checked) values[element.name].push(element.value);
+            return;
+          }
+          if (element.type === "radio") {
+            if (element.checked) values[element.name] = element.value;
+            return;
+          }
+          values[element.name] = element.value;
+        });
+
+        localStorage.setItem(
+          FORM_DRAFT_KEY,
+          JSON.stringify({
+            currentStep,
+            values,
+          })
+        );
+      }
+
+      function restoreDraft() {
+        const raw = localStorage.getItem(FORM_DRAFT_KEY);
+        if (!raw) return;
+
+        try {
+          const draft = JSON.parse(raw);
+          const values = draft.values || {};
+          const elements = form.querySelectorAll("input, select, textarea");
+
+          elements.forEach((element) => {
+            if (!element.name || !(element.name in values)) return;
+            const value = values[element.name];
+
+            if (element.type === "checkbox") {
+              element.checked = Array.isArray(value) && value.includes(element.value);
+              return;
+            }
+
+            if (element.type === "radio") {
+              element.checked = value === element.value;
+              return;
+            }
+
+            element.value = typeof value === "string" ? value : "";
+          });
+
+          if (Number.isInteger(draft.currentStep)) {
+            currentStep = Math.max(0, Math.min(draft.currentStep, steps.length - 1));
+            completedSteps = currentStep;
+          }
+        } catch {
+          localStorage.removeItem(FORM_DRAFT_KEY);
+        }
+      }
+
+      function openModal() {
+        formModal.classList.remove("hidden");
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        formModal.classList.add("hidden");
+        document.body.classList.remove("modal-open");
+      }
+
+      function validateStep(stepIndex) {
+        const fields = Array.from(getStepFields(stepIndex));
+        for (const field of fields) {
+          if (!field.checkValidity()) {
+            field.reportValidity();
+            return false;
+          }
+        }
+
+        if (!validateEmailField()) {
+          emailInput.reportValidity();
+          return false;
+        }
+
+        if (!validateNameField()) {
+          fullNameInput.reportValidity();
+          return false;
+        }
+
+        if (stepIndex === 1 && !validateUsersField()) {
+          usersInput.reportValidity();
+          return false;
+        }
+
+        if (stepIndex === 1 && !validateRadioGroup(startTimeRadios, startTimeHelper)) {
+          startTimeRadios[0].focus();
+          return false;
+        }
+
+        if (stepIndex === 2 && !validateRadioGroup(planRadios, planHelper)) {
+          planRadios[0].focus();
+          return false;
+        }
+
+        return validateNeedsSelection();
+      }
+
+      function updateSummary() {
+        const data = new FormData(form);
+        const needs = data.getAll("needs");
+        const selectedPlan = data.get("plan");
+        const selectedUsersRange = data.get("users") || "1";
+        const [summaryMinUsers, summaryMaxUsers] = getUsersBounds(selectedUsersRange);
+        let selectedPlanPrice = "-";
+
+        if (selectedPlan && PLAN_PRICING[selectedPlan]) {
+          const selectedModel = PLAN_PRICING[selectedPlan];
+          const minMonthly = computePlanMonthly(selectedModel.baseMonthly, selectedModel.perUser, summaryMinUsers);
+          const maxMonthly = computePlanMonthly(selectedModel.baseMonthly, selectedModel.perUser, summaryMaxUsers);
+          selectedPlanPrice =
+            summaryMinUsers === summaryMaxUsers
+              ? `${formatCurrency(minMonthly)}/mo`
+              : `${formatCurrency(minMonthly)}-${formatCurrency(maxMonthly)}/mo`;
+        }
+
+        summaryPanel.innerHTML = `
+          <dl class="grid gap-4 sm:grid-cols-2 text-sm">
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Name</dt><dd>${data.get("fullName") || "-"}</dd></div>
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Email</dt><dd>${data.get("email") || "-"}</dd></div>
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Company</dt><dd>${data.get("company") || "Not provided"}</dd></div>
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Users</dt><dd>${data.get("users") || "-"}</dd></div>
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Start Time</dt><dd>${data.get("startTime") || "-"}</dd></div>
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Plan</dt><dd>${data.get("plan") || "-"}</dd></div>
+            <div><dt class="font-bold text-zinc-600 dark:text-zinc-300">Estimated Price</dt><dd>${selectedPlanPrice}</dd></div>
+            <div class="sm:col-span-2"><dt class="font-bold text-zinc-600 dark:text-zinc-300">Looking For</dt><dd>${needs.length ? needs.join(", ") : "-"}</dd></div>
+          </dl>
+        `;
+      }
+
+      function updateUi() {
+        steps.forEach((step, index) => {
+          step.classList.toggle("is-active", index === currentStep);
+        });
+
+        const total = steps.length;
+        const currentLabel = currentStep + 1;
+        stepCounter.textContent = `Step ${currentLabel} of ${total}`;
+        setProgressByCompletion();
+
+        prevBtn.classList.toggle("invisible", currentStep === 0);
+        nextBtn.classList.toggle("hidden", currentStep === total - 1);
+        submitBtn.classList.toggle("hidden", currentStep !== total - 1);
+
+        if (currentStep === total - 1) {
+          updateSummary();
+        }
+
+        saveDraft();
+      }
+
+      fullNameInput.addEventListener("input", () => {
+        validateNameField();
+        clearGlobalError();
+        saveDraft();
+      });
+      emailInput.addEventListener("input", () => {
+        validateEmailField();
+        clearGlobalError();
+        saveDraft();
+      });
+      usersInput.addEventListener("change", () => {
+        validateUsersField();
+        updatePlanPricesFromUsers();
+        clearGlobalError();
+        saveDraft();
+      });
+      needsCheckboxes.forEach((item) =>
+        item.addEventListener("change", () => {
+          validateNeedsSelection();
+          clearGlobalError();
+          saveDraft();
+        })
+      );
+      startTimeRadios.forEach((item) =>
+        item.addEventListener("change", () => {
+          validateRadioGroup(startTimeRadios, startTimeHelper);
+          clearGlobalError();
+          saveDraft();
+        })
+      );
+      planRadios.forEach((item) =>
+        item.addEventListener("change", () => {
+          validateRadioGroup(planRadios, planHelper);
+          clearGlobalError();
+          saveDraft();
+        })
+      );
+      form.querySelectorAll("select, textarea, input[type='text'], input[type='email']").forEach((element) => {
+        element.addEventListener("change", saveDraft);
+      });
+
+      openModalBtn.addEventListener("click", openModal);
+      closeModalBtn.addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("click", closeModal);
+      formModal.addEventListener("click", (event) => {
+        if (event.target === formModal) closeModal();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !formModal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+
+      nextBtn.addEventListener("click", () => {
+        clearGlobalError();
+        if (!validateStep(currentStep)) return;
+        completedSteps = Math.max(completedSteps, currentStep + 1);
+        currentStep = Math.min(currentStep + 1, steps.length - 1);
+        updateUi();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        clearGlobalError();
+        currentStep = Math.max(currentStep - 1, 0);
+        updateUi();
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (isSubmitting) return;
+        if (!validateStep(currentStep)) return;
+
+        isSubmitting = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        window.setTimeout(() => {
+          completedSteps = 3;
+          setProgressByCompletion();
+
+          formError.classList.remove("hidden");
+          formError.classList.remove("bg-red-50", "border-red-500/30", "text-red-700", "dark:bg-red-950/30", "dark:text-red-200");
+          formError.classList.add("border-moss/40", "bg-moss/20", "text-zinc-900", "dark:text-zinc-100");
+          formError.textContent = "Success. Your request was submitted and an Ashborne specialist will contact you within 1 business day.";
+
+          submitBtn.textContent = "Submitted";
+          localStorage.removeItem(FORM_DRAFT_KEY);
+          isSubmitting = false;
+        }, 1100);
+      });
+
+      restoreDraft();
+      updatePlanPricesFromUsers();
+      openModal();
+      updateUi();
+    </script>
+  </body>
+</html>
