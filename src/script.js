@@ -1,5 +1,6 @@
 const THEME_KEY = "ashborne-theme";
 const BILLING_KEY = "ashborne-billing";
+const FAQ_OPEN_COUNT_KEY = "ashborne-faq-open-counts";
 
 const pricingState = {
   billingCycle: "monthly",
@@ -627,6 +628,136 @@ function initSmoothAnchorEnhancements() {
   });
 }
 
+function initFaqSection() {
+  const list = document.getElementById("faq-list");
+  const searchInput = document.getElementById("faq-search");
+  const resultsLabel = document.getElementById("faq-results-count");
+  if (!list) return;
+
+  const items = Array.from(list.querySelectorAll("[data-faq-item]"));
+  if (!items.length) return;
+
+  let openCounts = {};
+  try {
+    const stored = localStorage.getItem(FAQ_OPEN_COUNT_KEY);
+    openCounts = stored ? JSON.parse(stored) : {};
+  } catch {
+    openCounts = {};
+  }
+
+  function persistOpenCounts() {
+    localStorage.setItem(FAQ_OPEN_COUNT_KEY, JSON.stringify(openCounts));
+  }
+
+  function getQuestionId(item, index) {
+    const button = item.querySelector("[data-faq-toggle]");
+    return button?.id || `faq-question-${index + 1}`;
+  }
+
+  function updateCounter(item, index) {
+    const key = getQuestionId(item, index);
+    const count = Number(openCounts[key] || 0);
+    const target = item.querySelector("[data-open-count]");
+    if (target) target.textContent = String(count);
+  }
+
+  function setOpenState(item, shouldOpen) {
+    const button = item.querySelector("[data-faq-toggle]");
+    const answer = item.querySelector(".faq-answer");
+    const icon = item.querySelector(".faq-icon");
+    if (!button || !answer || !icon) return;
+
+    const isAlreadyOpen = button.getAttribute("aria-expanded") === "true";
+    if (isAlreadyOpen === shouldOpen) return;
+
+    button.setAttribute("aria-expanded", String(shouldOpen));
+    item.classList.toggle("is-open", shouldOpen);
+
+    if (shouldOpen) {
+      answer.hidden = false;
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+      icon.textContent = "-";
+    } else {
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+      window.requestAnimationFrame(() => {
+        answer.style.maxHeight = "0px";
+      });
+      icon.textContent = "+";
+      const onDone = () => {
+        if (button.getAttribute("aria-expanded") === "false") {
+          answer.hidden = true;
+        }
+        answer.removeEventListener("transitionend", onDone);
+      };
+      answer.addEventListener("transitionend", onDone);
+    }
+  }
+
+  function closeOthers(activeItem) {
+    items.forEach((item) => {
+      if (item === activeItem) return;
+      setOpenState(item, false);
+    });
+  }
+
+  function syncResultsLabel() {
+    if (!resultsLabel) return;
+    const visibleCount = items.filter((item) => item.style.display !== "none").length;
+    resultsLabel.textContent = `${visibleCount} question${visibleCount === 1 ? "" : "s"}`;
+  }
+
+  items.forEach((item, index) => {
+    const button = item.querySelector("[data-faq-toggle]");
+    const answer = item.querySelector(".faq-answer");
+    if (!button || !answer) return;
+
+    answer.style.maxHeight = "0px";
+    updateCounter(item, index);
+
+    button.addEventListener("click", () => {
+      const willOpen = button.getAttribute("aria-expanded") !== "true";
+      closeOthers(item);
+      setOpenState(item, willOpen);
+
+      if (willOpen) {
+        const key = getQuestionId(item, index);
+        openCounts[key] = Number(openCounts[key] || 0) + 1;
+        updateCounter(item, index);
+        persistOpenCounts();
+      }
+    });
+
+    const feedbackButtons = Array.from(item.querySelectorAll(".faq-feedback-btn"));
+    feedbackButtons.forEach((feedbackButton) => {
+      feedbackButton.addEventListener("click", () => {
+        const selectedValue = feedbackButton.dataset.feedback;
+        feedbackButtons.forEach((candidate) => {
+          const isSelected = candidate.dataset.feedback === selectedValue;
+          candidate.classList.toggle("is-selected", isSelected);
+          candidate.setAttribute("aria-pressed", String(isSelected));
+        });
+      });
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      items.forEach((item) => {
+        const text = item.textContent?.toLowerCase() || "";
+        const isMatch = text.includes(query);
+        item.style.display = isMatch ? "" : "none";
+        if (!isMatch) {
+          setOpenState(item, false);
+        }
+      });
+      syncResultsLabel();
+    });
+  }
+
+  syncResultsLabel();
+}
+
 function initPage() {
   document.body.classList.add("page-ready");
   initThemeToggle();
@@ -638,6 +769,7 @@ function initPage() {
   initPricing3DHover();
   initCtaLoadingStates();
   initSmoothAnchorEnhancements();
+  initFaqSection();
   updateLightModeContrast();
 
   // Re-evaluate contrast on viewport changes.

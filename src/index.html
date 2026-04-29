@@ -339,6 +339,193 @@
         </div>
       </section>
 
+      <!-- FAQ -->
+      <section id="faq" class="py-20">
+        <div class="mx-auto w-[min(960px,92%)]">
+          <div class="mb-10 text-center reveal">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-ember">Ridgeline FAQ</p>
+            <h2 class="mt-3 font-serif text-3xl md:text-5xl">Questions players ask before choosing Ridgeline.</h2>
+            <p class="mx-auto mt-5 max-w-2xl text-zinc-700 dark:text-zinc-300">Find quick answers about plans, support, and what to expect from Ashborne's most purchased series.</p>
+          </div>
+
+          <div class="faq-shell reveal rounded-3xl border border-black/10 bg-white/80 p-5 shadow-xl dark:border-white/10 dark:bg-zinc-900/70 md:p-8">
+            <label for="faq-search" class="mb-3 block text-sm font-semibold text-zinc-700 dark:text-zinc-200">Search questions</label>
+            <div class="relative">
+              <input
+                id="faq-search"
+                type="search"
+                placeholder="Search Ridgeline questions..."
+                class="faq-search-input w-full rounded-2xl border border-black/10 bg-white/90 px-4 py-3 pr-12 text-sm text-zinc-800 outline-none transition focus:border-ember/60 focus:ring-4 focus:ring-ember/15 dark:border-white/15 dark:bg-zinc-950/60 dark:text-zinc-100"
+              />
+              <span class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true">⌕</span>
+            </div>
+            <p id="faq-results-count" class="mt-3 text-sm text-zinc-600 dark:text-zinc-400" aria-live="polite">8 questions</p>
+
+            <div id="faq-list" class="mt-5 space-y-4">
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
+                    <span class="text-base font-bold md:text-lg">How does Ridgeline guitar series subscription work?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-1" class="faq-answer" role="region" aria-labelledby="faq-question-1" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">Pick your Ridgeline base model, choose monthly or annual billing, and lock in your build slot with a consultation. Your plan covers milestone updates, setup options, and direct workshop support through delivery.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
+                    <span class="text-base font-bold md:text-lg">Can I cancel anytime?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-2" class="faq-answer" role="region" aria-labelledby="faq-question-2" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">Yes. You can cancel before wood selection and carving starts with no lock-in fee. If your build has already entered production, we apply a transparent progress-based fee and provide all detail in writing first.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
+                    <span class="text-base font-bold md:text-lg">Do you offer a money-back guarantee?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-3" class="faq-answer" role="region" aria-labelledby="faq-question-3" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">We offer a 14-day tone and comfort guarantee after delivery. If the instrument does not feel right, we first attempt adjustments and setup refinements. If it still is not a fit, we arrange a return under our workshop policy.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
+                    <span class="text-base font-bold md:text-lg">Do I need technical knowledge?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-4" class="faq-answer" role="region" aria-labelledby="faq-question-4" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">No technical background is required. Our luthiers guide you through tone goals, neck feel, and pickup voicing using plain language and examples from your favorite artists or recordings.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-5" id="faq-question-5">
+                    <span class="text-base font-bold md:text-lg">What's included in the plan?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-5" class="faq-answer" role="region" aria-labelledby="faq-question-5" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">Every Ridgeline plan includes model configuration, consultation with a luthier, hand-wound pickup options, custom setup, and post-delivery support. Pro and Premium plans add deeper voicing sessions and expanded finish choices.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-6" id="faq-question-6">
+                    <span class="text-base font-bold md:text-lg">Are there discounts for large teams?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-6" class="faq-answer" role="region" aria-labelledby="faq-question-6" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">Yes. Studio collectives, schools, and touring teams can receive group pricing. Annual billing plus higher team size unlocks stronger discounts, and we can bundle coordinated setups for consistent playability.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-7" id="faq-question-7">
+                    <span class="text-base font-bold md:text-lg">How long does a Ridgeline build usually take?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-7" class="faq-answer" role="region" aria-labelledby="faq-question-7" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">Most Ridgeline builds are completed in 12 to 18 weeks depending on wood selection and finish complexity. Limited runs and reclaimed timber options can add extra time, and we share progress updates at each milestone.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-item rounded-2xl border border-black/10 bg-white/90 p-4 shadow-sm transition dark:border-white/10 dark:bg-zinc-950/50" data-faq-item>
+                <h3>
+                  <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 text-left" data-faq-toggle aria-expanded="false" aria-controls="faq-answer-8" id="faq-question-8">
+                    <span class="text-base font-bold md:text-lg">Can I customize pickups, neck profile, and finish?</span>
+                    <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-full border border-ember/30 bg-ember/10 text-lg font-bold text-ember" aria-hidden="true">+</span>
+                  </button>
+                </h3>
+                <div id="faq-answer-8" class="faq-answer" role="region" aria-labelledby="faq-question-8" hidden>
+                  <p class="pt-3 text-zinc-700 dark:text-zinc-300">Absolutely. Ridgeline is built for expressive customization: pickup voicing, neck carve, fingerboard feel, and finish direction are part of the consultation. We keep tonal balance and stage reliability at the center of every choice.</p>
+                  <div class="faq-meta mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <p class="font-medium text-zinc-600 dark:text-zinc-400">Opened <span data-open-count="0">0</span> times</p>
+                    <div class="flex items-center gap-2">
+                      <span class="text-zinc-600 dark:text-zinc-400">Did this answer help?</span>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="up" aria-label="This answer was helpful">👍</button>
+                      <button type="button" class="faq-feedback-btn ripple-btn" data-feedback="down" aria-label="This answer was not helpful">👎</button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Final CTA -->
       <section class="pb-24 pt-10">
         <div class="mx-auto w-[min(960px,92%)] reveal">
