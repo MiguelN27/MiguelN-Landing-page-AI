@@ -30,6 +30,12 @@ function relativeLuminance([r, g, b]) {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
+function contrastRatio(luminanceA, luminanceB) {
+  const lighter = Math.max(luminanceA, luminanceB);
+  const darker = Math.min(luminanceA, luminanceB);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 function findSolidBackground(element) {
   let current = element;
   while (current && current !== document.body) {
@@ -40,6 +46,12 @@ function findSolidBackground(element) {
     current = current.parentElement;
   }
   return [251, 251, 254, 1];
+}
+
+function findTextColor(element) {
+  const style = window.getComputedStyle(element);
+  const channels = parseRgbChannels(style.color);
+  return channels || [17, 24, 39, 1];
 }
 
 function updateLightModeContrast() {
@@ -56,9 +68,15 @@ function updateLightModeContrast() {
     if (!element.textContent || !element.textContent.trim()) return;
 
     const bgChannels = findSolidBackground(element);
+    const textChannels = findTextColor(element);
     const alpha = bgChannels[3] ?? 1;
-    const luminance = relativeLuminance(bgChannels);
-    if (alpha > 0.3 && luminance < 122) {
+    const bgLuminance = relativeLuminance(bgChannels);
+    const textLuminance = relativeLuminance(textChannels);
+    const ratio = contrastRatio((bgLuminance + 0.05) / 255, (textLuminance + 0.05) / 255);
+
+    // In light mode, only force dark text when both text and background are bright,
+    // and the contrast is poor enough to hurt readability.
+    if (alpha > 0.3 && bgLuminance > 165 && textLuminance > 150 && ratio < 3.3) {
       element.classList.add("force-light-text");
     }
   });

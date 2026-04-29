@@ -55,6 +55,34 @@ html[data-theme="light"] #pricing .shadow-glow {
   box-shadow: 0 16px 40px rgba(225, 139, 10, 0.2);
 }
 
+html[data-theme="light"] div.pricing-controls,
+html[data-theme="light"] div.pricing-controls p,
+html[data-theme="light"] div.pricing-controls span {
+  color: #f9fafb !important;
+}
+
+html[data-theme="light"] #compare-plans-btn {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] #billing-monthly,
+html[data-theme="light"] #billing-annual {
+  color: #f9fafb !important;
+}
+
+html[data-theme="light"] a[href="#features"] {
+  color: #f9fafb !important;
+}
+
+html[data-theme="light"] header nav a[href="#features"] {
+  color: #111827 !important;
+}
+
+html[data-theme="light"] img[alt="Close-up of handcrafted Ashborne electric guitar with visible wood grain"] + div,
+html[data-theme="light"] img[alt="Close-up of handcrafted Ashborne electric guitar with visible wood grain"] + div * {
+  color: #f9fafb !important;
+}
+
 html[data-theme="light"] #pricing a,
 html[data-theme="light"] header a[href="#pricing"] {
   color: #111827 !important;
@@ -73,11 +101,11 @@ html[data-theme="light"] .force-light-text li,
 html[data-theme="light"] .force-light-text figcaption,
 html[data-theme="light"] .force-light-text blockquote,
 html[data-theme="light"] .force-light-text a {
-  color: #f9fafb !important;
+  color: #111827 !important;
 }
 
 html[data-theme="light"] .force-light-text {
-  border-color: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(17, 24, 39, 0.12) !important;
 }
 
 html[data-theme="light"] .bg-black,
